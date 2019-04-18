@@ -34,9 +34,9 @@
             this.quizToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quizToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.quizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,7 +69,7 @@
             this.openToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quizToolStripMenuItem1});
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(252, 30);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(210, 30);
             this.openToolStripMenuItem1.Text = "Open";
             // 
             // quizToolStripMenuItem1
@@ -83,34 +83,35 @@
             this.newToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quizToolStripMenuItem2});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.newToolStripMenuItem.Text = "New";
             // 
             // quizToolStripMenuItem2
             // 
             this.quizToolStripMenuItem2.Name = "quizToolStripMenuItem2";
-            this.quizToolStripMenuItem2.Size = new System.Drawing.Size(132, 30);
+            this.quizToolStripMenuItem2.Size = new System.Drawing.Size(210, 30);
             this.quizToolStripMenuItem2.Text = "Quiz";
-            // 
-            // quizToolStripMenuItem
-            // 
-            this.quizToolStripMenuItem.Name = "quizToolStripMenuItem";
-            this.quizToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
-            this.quizToolStripMenuItem.Text = "About";
+            this.quizToolStripMenuItem2.Click += new System.EventHandler(this.quizToolStripMenuItem2_Click);
             // 
             // loginToolStripMenuItem
             // 
             this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
-            this.loginToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.loginToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.loginToolStripMenuItem.Text = "Login";
             this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
             // 
             // registerToolStripMenuItem
             // 
             this.registerToolStripMenuItem.Name = "registerToolStripMenuItem";
-            this.registerToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.registerToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.registerToolStripMenuItem.Text = "Register";
             this.registerToolStripMenuItem.Click += new System.EventHandler(this.registerToolStripMenuItem_Click);
+            // 
+            // quizToolStripMenuItem
+            // 
+            this.quizToolStripMenuItem.Name = "quizToolStripMenuItem";
+            this.quizToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
+            this.quizToolStripMenuItem.Text = "About";
             // 
             // MainForm
             // 
