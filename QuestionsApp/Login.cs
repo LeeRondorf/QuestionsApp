@@ -26,6 +26,7 @@ namespace QuestionsApp
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            /*
             string connectionString;
             string sql;
 
@@ -66,7 +67,10 @@ namespace QuestionsApp
             finally
             {
                 con.Close();
-            }
+            }*/
+
+            RunSqlCommands connection = new RunSqlCommands();
+            connection.login(txtUsername.Text, txtPassword.Text);
 
         }
     }

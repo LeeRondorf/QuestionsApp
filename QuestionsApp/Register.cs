@@ -21,6 +21,26 @@ namespace QuestionsApp
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            if (txtPassword.Text.Equals(txtConfPwd.Text))
+            {
+                RunSqlCommands connection = new RunSqlCommands();
+
+                string username = txtUsername.Text;
+                string password = txtPassword.Text;
+                string firstName = txtFirstName.Text;
+                string middleName = txtMiddleName.Text;
+                string lastName = txtLastName.Text;
+                string address = txtAddress.Text;
+                string city = txtCity.Text;
+                string state = cmbState.Text;
+                string postalCode = txtPostalCode.Text;
+
+                if (connection.register(username, password, firstName, middleName, lastName, address, city, state, postalCode))
+                {
+                    MessageBox.Show("Registered Successfully");
+                }
+            }
+
             /*         //secure password
                        String password = txtPassword.Text;
 
@@ -41,17 +61,18 @@ namespace QuestionsApp
                        string savedPasswordHash = Convert.ToBase64String(hashBytes);
            //            DBContext.AddUser(new User { ..., Password = savedPasswordHash });
            */
+           /*
             string connectionString;
             string sql;
             Boolean addUser = true;
             
             //set connection string
-            connectionString = @"Data Source=UMC-1040-1147\SQLEXPRESS;Initial Catalog=QuestionApp;Integrated Security=True";
+            connectionString = @"Data Source=UMC-1040-1351\SQLEXPRESS;Initial Catalog=QuestionApp;Integrated Security=True";
 
             //query to check if username exists already
             sql = "SELECT username FROM users where username = @username";
 
-            SqlConnection con = new SqlConnection(connectionString);
+            System.Data.SqlClient.SqlConnection con = new System.Data.SqlClient.SqlConnection(connectionString);
             SqlCommand scUserCheck = new SqlCommand(sql, con);
             scUserCheck.Parameters.AddWithValue("@username", txtUsername.Text);
 
@@ -122,7 +143,7 @@ namespace QuestionsApp
                     MessageBox.Show("Passwords do not match or invalid.");
                 }
                 
-            }
+            }*/
             
         }
 

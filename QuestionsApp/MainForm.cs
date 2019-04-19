@@ -40,5 +40,12 @@ namespace QuestionsApp
             register.MdiParent = this;
             register.Show();
         }
+
+        private void quizToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            CreateQuiz quiz = new CreateQuiz();
+            quiz.MdiParent = this;
+            quiz.Show();
+        }
     }
 }

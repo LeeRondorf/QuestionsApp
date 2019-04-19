@@ -71,6 +71,9 @@ namespace QuestionsApp
         private void saveButton_Click(object sender, EventArgs e)
         {
             quiz.quizTitle = quizNameBox.Text;
+
+            RunSqlCommands connection = new RunSqlCommands();
+            connection.saveQuizData(quiz);
         }
 
         private void answersList_SelectedIndexChanged(object sender, EventArgs e)
