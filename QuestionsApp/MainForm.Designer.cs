@@ -34,9 +34,9 @@
             this.quizToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quizToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.quizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,14 +89,9 @@
             // quizToolStripMenuItem2
             // 
             this.quizToolStripMenuItem2.Name = "quizToolStripMenuItem2";
-            this.quizToolStripMenuItem2.Size = new System.Drawing.Size(132, 30);
-            this.quizToolStripMenuItem2.Text = "Quiz";
-            // 
-            // quizToolStripMenuItem
-            // 
-            this.quizToolStripMenuItem.Name = "quizToolStripMenuItem";
-            this.quizToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
-            this.quizToolStripMenuItem.Text = "About";
+            this.quizToolStripMenuItem2.Size = new System.Drawing.Size(252, 30);
+            this.quizToolStripMenuItem2.Text = "Create Quiz";
+            this.quizToolStripMenuItem2.Click += new System.EventHandler(this.quizToolStripMenuItem2_Click);
             // 
             // loginToolStripMenuItem
             // 
@@ -111,6 +106,12 @@
             this.registerToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.registerToolStripMenuItem.Text = "Register";
             this.registerToolStripMenuItem.Click += new System.EventHandler(this.registerToolStripMenuItem_Click);
+            // 
+            // quizToolStripMenuItem
+            // 
+            this.quizToolStripMenuItem.Name = "quizToolStripMenuItem";
+            this.quizToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
+            this.quizToolStripMenuItem.Text = "About";
             // 
             // MainForm
             // 
