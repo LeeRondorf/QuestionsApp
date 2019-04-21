@@ -73,7 +73,17 @@ namespace QuestionsApp
             quiz.quizTitle = quizNameBox.Text;
 
             RunSqlCommands connection = new RunSqlCommands();
-            connection.saveQuizData(quiz);
+            bool success = connection.saveQuizData(quiz);
+
+            if (success)
+            {
+                MessageBox.Show("Quiz uploaded successfully");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Quiz failed to upload");
+            }
         }
 
         private void answersList_SelectedIndexChanged(object sender, EventArgs e)

@@ -23,6 +23,7 @@ namespace QuestionsApp
                 //return true;
                 //if (reader.Read())
                 //{
+                /*
                     while (reader.Read())
                     {
                         //results.Add(reader[0]);
@@ -30,7 +31,7 @@ namespace QuestionsApp
                         {
                             
                         }
-                    }
+                    }*/
                 return true;
                 //}
 
@@ -38,12 +39,34 @@ namespace QuestionsApp
             catch (Exception err)
             {
                 Console.Error.WriteLine(err);
+                Console.Error.WriteLine("error");
+                Console.Error.WriteLine(err.StackTrace);
                 return false;
             }
             finally
             {
                 con.Close();
             }
+        }
+
+        private bool runCommandInsert(SqlCommand command)
+        {
+            //try
+            //{
+                con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                con.Close();
+                return true;
+                
+
+            /*}
+            catch (Exception err)
+            {
+                Console.Error.WriteLine(err);
+                Console.Error.WriteLine("error");
+                Console.Error.WriteLine(err.StackTrace);
+                return false;
+            }*/
         }
 
         private bool checkIfExists(string table, string paramToCheck, string text)
@@ -71,7 +94,7 @@ namespace QuestionsApp
                 command.Parameters.AddWithValue("@table", table);
                 command.Parameters.AddWithValue("@idType", idType);
                 command.Parameters.AddWithValue("@id", id);
-
+                //TODO
 
             }
 
@@ -108,7 +131,7 @@ namespace QuestionsApp
                 command.Parameters.AddWithValue("@state", state);
                 command.Parameters.AddWithValue("@postal_code", pc);
 
-                return runCommand(command);
+                return runCommandInsert(command);
             }
             else
             {
@@ -119,17 +142,49 @@ namespace QuestionsApp
 
         public bool saveQuizData(Quiz quiz)
         {
-            string sql = "INSERT INTO quiz (quizName) VALUES (@quizName)";
-            SqlCommand command = new SqlCommand(sql, con);
-            command.Parameters.AddWithValue("@quizName", quiz.quizTitle);
-            runCommand(command);
+            //try
+            //{
+                string sql = "INSERT INTO quiz (quizName) VALUES (@quizName)";
+                SqlCommand command = new SqlCommand(sql, con);
+                command.Parameters.AddWithValue("@quizName", quiz.quizTitle);
+                runCommandInsert(command);
 
-            foreach (Question question in quiz.questions)
+                foreach (Question question in quiz.questions)
+                {
+                    sql = "INSERT INTO question (quizID, questionText, questionName)" +
+                        " SELECT quiz.quizID, @questionText, @questionName" +
+                        " FROM quiz" +
+                        " WHERE quiz.quizName = @quizName";
+                    SqlCommand questionCommand = new SqlCommand(sql, con);
+                    questionCommand.Parameters.AddWithValue("@questionText", question.questionText);
+                    questionCommand.Parameters.AddWithValue("@questionName", question.QuestionName);
+                    questionCommand.Parameters.AddWithValue("@quizName", quiz.quizTitle);
+                    runCommandInsert(questionCommand);
+
+                    foreach (Answer answer in question.answers)
+                    {
+                        sql = "INSERT INTO answer (questionID, answerText, answerCorrect)" +
+                            " SELECT question.questionID, @answerText, @answerCorrect" +
+                            " FROM question" +
+                            " WHERE question.questionName = @questionName";
+                        SqlCommand answerCommand = new SqlCommand(sql, con);
+                        answerCommand.Parameters.AddWithValue("@answerText", answer.answerText);
+                        int correct = 0; //db looks for a tiny int. converts bool into int of 0 or 1
+                        if (answer.correct)
+                            correct = 1;
+                        answerCommand.Parameters.AddWithValue("@answerCorrect", correct);
+                        answerCommand.Parameters.AddWithValue("@questionName", question.QuestionName);
+                        runCommandInsert(answerCommand);
+                    }
+                }
+                return true;
+            /*}
+            catch (Exception e)
             {
-
-            }
-
-            return false;
+                Console.Error.WriteLine("error");
+                Console.Error.WriteLine(e.StackTrace);
+                return false;
+            }*/
         }
     }
 }
