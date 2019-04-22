@@ -129,12 +129,37 @@ namespace QuestionsApp
             command.Parameters.AddWithValue("@quizName", quiz.quizTitle);
             runCommand(command);
 
-            foreach (Question question in quiz.questions)
-            {
 
-            }
+                foreach (Question question in quiz.questions)
+                {
+                    sql = "INSERT INTO question (quizID, questionText, questionName)" +
+                        " SELECT quiz.quizID, @questionText, @questionName" +
+                        " FROM quiz" +
+                        " WHERE quiz.quizName = @quizName";
+                    SqlCommand questionCommand = new SqlCommand(sql, con);
+                    questionCommand.Parameters.AddWithValue("@questionText", question.questionText);
+                    questionCommand.Parameters.AddWithValue("@questionName", question.QuestionName);
+                    questionCommand.Parameters.AddWithValue("@quizName", quiz.quizTitle);
+                    runCommandInsert(questionCommand);
 
-            return false;
+                    foreach (Answer answer in question.answers)
+                    {
+                        sql = "INSERT INTO answer (questionID, answerText, answerCorrect)" +
+                            " SELECT question.questionID, @answerText, @answerCorrect" +
+                            " FROM question" +
+                            " WHERE question.questionName = @questionName";
+                        SqlCommand answerCommand = new SqlCommand(sql, con);
+                        answerCommand.Parameters.AddWithValue("@answerText", answer.answerText);
+                        int correct = 0; //db looks for a tiny int. converts bool into int of 0 or 1
+                        if (answer.correct)
+                            correct = 1;
+                        answerCommand.Parameters.AddWithValue("@answerCorrect", correct);
+                        answerCommand.Parameters.AddWithValue("@questionName", question.QuestionName);
+                        runCommandInsert(answerCommand);
+                    }
+                }
+                return true;
+        
         }
     }
 }
