@@ -61,89 +61,6 @@ namespace QuestionsApp
                        string savedPasswordHash = Convert.ToBase64String(hashBytes);
            //            DBContext.AddUser(new User { ..., Password = savedPasswordHash });
            */
-           /*
-            string connectionString;
-            string sql;
-            Boolean addUser = true;
-            
-            //set connection string
-            connectionString = @"Data Source=UMC-1040-1351\SQLEXPRESS;Initial Catalog=QuestionApp;Integrated Security=True";
-
-            //query to check if username exists already
-            sql = "SELECT username FROM users where username = @username";
-
-            System.Data.SqlClient.SqlConnection con = new System.Data.SqlClient.SqlConnection(connectionString);
-            SqlCommand scUserCheck = new SqlCommand(sql, con);
-            scUserCheck.Parameters.AddWithValue("@username", txtUsername.Text);
-
-            try
-            {
-                con.Open();
-                var reader = scUserCheck.ExecuteReader();
-                if (reader.Read())
-                {
-                    addUser = false;
-                }
-
-            }
-            catch (Exception err)
-            {
-                Console.Error.WriteLine(err);
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            //submit user details to database
-            //check password fields match, are not empty, and username does not already exist
-            if (txtPassword.Text.Equals(txtConfPwd.Text) && !txtPassword.Text.Equals("") && !txtConfPwd.Text.Equals("") && addUser.Equals(true))
-            {
-                sql = "INSERT INTO users (username,password,first_name,middle_name,last_name,address,city,state_abbr,postal_code)" +
-                        "VALUES (@username,@password,@first_name,@middle_name,@last_name,@address,@city,@state,@postal_code)";
-
-                SqlCommand sc = new SqlCommand(sql, con);
-                //parameterize values for sql query
-                sc.Parameters.AddWithValue("@username", txtUsername.Text);
-                sc.Parameters.AddWithValue("@password", txtPassword.Text);
-                sc.Parameters.AddWithValue("@first_name", txtFirstName.Text);
-                sc.Parameters.AddWithValue("@middle_name", txtMiddleName.Text);
-                sc.Parameters.AddWithValue("@last_name", txtLastName.Text);
-                sc.Parameters.AddWithValue("@address", txtAddress.Text);
-                sc.Parameters.AddWithValue("@city", txtCity.Text);
-                sc.Parameters.AddWithValue("@state", cmbState.Text);
-                sc.Parameters.AddWithValue("@postal_code", txtPostalCode.Text);
-
-                try
-                {
-                    con.Open();
-                    sc.ExecuteNonQuery();
-                    clearForm();
-                    ActiveForm.Close();
-                    Login login = new Login();
-                    login.Show();
-                }
-                catch (Exception err)
-                {
-                    Console.Error.WriteLine(err);
-                }
-                finally
-                {
-                    con.Close();
-                }
-            }
-            else
-            {
-                if (addUser.Equals(false)) //username exists
-                {
-                    MessageBox.Show("Username is already taken.");
-                }
-                else //password and verify passwor mismatch or blank
-                {
-                    MessageBox.Show("Passwords do not match or invalid.");
-                }
-                
-            }*/
             
         }
 
@@ -190,6 +107,11 @@ namespace QuestionsApp
         private void Register_FormClosed(object sender, FormClosedEventArgs e)
         {
             
+        }
+
+        private void Register_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

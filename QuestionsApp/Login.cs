@@ -26,30 +26,16 @@ namespace QuestionsApp
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            /*
-            string connectionString;
-            string sql;
-
-            //set connection string
-            connectionString = @"Data Source=UMC-1040-1147\SQLEXPRESS;Initial Catalog=QuestionApp;Integrated Security=True";
-
-            //query to check if username exists already
-            sql = "SELECT username, password FROM users where username = @username AND password = @password";
-
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand scUserCheck = new SqlCommand(sql, con);
-            scUserCheck.Parameters.AddWithValue("@username", txtUsername.Text);
-            scUserCheck.Parameters.AddWithValue("@password", txtPassword.Text);
-
-            try
+           /* 
+           try
             {
                 con.Open();
                 var reader = scUserCheck.ExecuteReader();
                 if (reader.Read())
                 {
                     //if general user, open the quiz selection page (something)
-                    
-                
+
+                    MessageBox.Show("Success");
                     //if admin, open quiz management page
 
 
@@ -67,10 +53,17 @@ namespace QuestionsApp
             finally
             {
                 con.Close();
-            }*/
-
+            }
+            */
             RunSqlCommands connection = new RunSqlCommands();
-            connection.login(txtUsername.Text, txtPassword.Text);
+            if (connection.login(txtUsername.Text, txtPassword.Text).Equals(true))
+            {
+                MessageBox.Show("Login Successful.");
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password.");
+            }
 
         }
     }

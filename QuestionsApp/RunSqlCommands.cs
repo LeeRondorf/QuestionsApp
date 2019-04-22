@@ -11,7 +11,7 @@ namespace QuestionsApp
     class RunSqlCommands
     {
         //make sure to change the data source to your computer
-        static string connectionString = @"Data Source=UMC-1040-1351\SQLEXPRESS;Initial Catalog=QuestionApp;Integrated Security=True";
+        static string connectionString = @"Data Source=UMC-1040-1147\SQLEXPRESS01;Initial Catalog=QuestionApp;Integrated Security=True";
         SqlConnection con = new SqlConnection(connectionString);
 
         private bool runCommand(SqlCommand command)
@@ -21,8 +21,8 @@ namespace QuestionsApp
                 con.Open();
                 SqlDataReader reader = command.ExecuteReader();
                 //return true;
-                //if (reader.Read())
-                //{
+                if (reader.Read())
+                {
                     while (reader.Read())
                     {
                         //results.Add(reader[0]);
@@ -31,8 +31,12 @@ namespace QuestionsApp
                             
                         }
                     }
-                return true;
-                //}
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
 
             }
             catch (Exception err)
@@ -85,7 +89,8 @@ namespace QuestionsApp
             command.Parameters.AddWithValue("@username", username);
             command.Parameters.AddWithValue("@password", password);
 
-            return runCommand(command);
+
+             return runCommand(command);
         }
 
         public bool register(string un, string pw, string fn, string mn, string ln, string ad, string city, string state, string pc)
