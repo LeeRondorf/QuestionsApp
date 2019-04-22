@@ -11,7 +11,7 @@ namespace QuestionsApp
     class RunSqlCommands
     {
         //make sure to change the data source to your computer
-        static string connectionString = @"Data Source=UMC-1040-1351\SQLEXPRESS;Initial Catalog=QuestionApp;Integrated Security=True";
+        static string connectionString = @"Data Source=UMC-1040-1147\SQLEXPRESS01;Initial Catalog=QuestionApp;Integrated Security=True";
         SqlConnection con = new SqlConnection(connectionString);
 
         private bool runCommand(SqlCommand command)
@@ -21,9 +21,8 @@ namespace QuestionsApp
                 con.Open();
                 SqlDataReader reader = command.ExecuteReader();
                 //return true;
-                //if (reader.Read())
-                //{
-                /*
+                if (reader.Read())
+                {
                     while (reader.Read())
                     {
                         //results.Add(reader[0]);
@@ -31,42 +30,24 @@ namespace QuestionsApp
                         {
                             
                         }
-                    }*/
-                return true;
-                //}
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
 
             }
             catch (Exception err)
             {
                 Console.Error.WriteLine(err);
-                Console.Error.WriteLine("error");
-                Console.Error.WriteLine(err.StackTrace);
                 return false;
             }
             finally
             {
                 con.Close();
             }
-        }
-
-        private bool runCommandInsert(SqlCommand command)
-        {
-            //try
-            //{
-                con.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                con.Close();
-                return true;
-                
-
-            /*}
-            catch (Exception err)
-            {
-                Console.Error.WriteLine(err);
-                Console.Error.WriteLine("error");
-                Console.Error.WriteLine(err.StackTrace);
-                return false;
-            }*/
         }
 
         private bool checkIfExists(string table, string paramToCheck, string text)
@@ -94,7 +75,7 @@ namespace QuestionsApp
                 command.Parameters.AddWithValue("@table", table);
                 command.Parameters.AddWithValue("@idType", idType);
                 command.Parameters.AddWithValue("@id", id);
-                //TODO
+
 
             }
 
@@ -108,7 +89,8 @@ namespace QuestionsApp
             command.Parameters.AddWithValue("@username", username);
             command.Parameters.AddWithValue("@password", password);
 
-            return runCommand(command);
+
+             return runCommand(command);
         }
 
         public bool register(string un, string pw, string fn, string mn, string ln, string ad, string city, string state, string pc)
@@ -131,7 +113,7 @@ namespace QuestionsApp
                 command.Parameters.AddWithValue("@state", state);
                 command.Parameters.AddWithValue("@postal_code", pc);
 
-                return runCommandInsert(command);
+                return runCommand(command);
             }
             else
             {
@@ -142,12 +124,11 @@ namespace QuestionsApp
 
         public bool saveQuizData(Quiz quiz)
         {
-            //try
-            //{
-                string sql = "INSERT INTO quiz (quizName) VALUES (@quizName)";
-                SqlCommand command = new SqlCommand(sql, con);
-                command.Parameters.AddWithValue("@quizName", quiz.quizTitle);
-                runCommandInsert(command);
+            string sql = "INSERT INTO quiz (quizName) VALUES (@quizName)";
+            SqlCommand command = new SqlCommand(sql, con);
+            command.Parameters.AddWithValue("@quizName", quiz.quizTitle);
+            runCommand(command);
+
 
                 foreach (Question question in quiz.questions)
                 {
@@ -178,14 +159,7 @@ namespace QuestionsApp
                     }
                 }
                 return true;
-            //test
-            /*}
-            catch (Exception e)
-            {
-                Console.Error.WriteLine("error");
-                Console.Error.WriteLine(e.StackTrace);
-                return false;
-            }*/
+        
         }
     }
 }

@@ -43,9 +43,9 @@ namespace QuestionsApp
 
         private void quizToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            CreateQuiz quiz = new CreateQuiz();
-            quiz.MdiParent = this;
-            quiz.Show();
+            CreateQuiz createQuiz = new CreateQuiz();
+            createQuiz.MdiParent = this;
+            createQuiz.Show();
         }
     }
 }
