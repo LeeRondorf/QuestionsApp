@@ -33,5 +33,16 @@ namespace QuestionsApp.Properties {
                 return ((string)(this["QuestionAppConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=UMC-1040-1147\\SQLEXPRESS01;Initial Catalog=QuestionApp;Integrated Sec" +
+            "urity=True")]
+        public string QuestionAppConnectionString1 {
+            get {
+                return ((string)(this["QuestionAppConnectionString1"]));
+            }
+        }
     }
 }

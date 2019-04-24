@@ -47,5 +47,12 @@ namespace QuestionsApp
             createQuiz.MdiParent = this;
             createQuiz.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Response response = new Response();
+            response.MdiParent = this;
+            response.Show();
+        }
     }
 }

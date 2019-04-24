@@ -50,6 +50,14 @@ namespace QuestionsApp
             }
         }
 
+        private bool runCommandInsert(SqlCommand command)
+        {
+            con.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            con.Close();
+            return true;
+        }
+
         private bool checkIfExists(string table, string paramToCheck, string text)
         {
             string sql = "SELECT @paramToCheck FROM @table where @paramToCheck = @text";
@@ -161,5 +169,43 @@ namespace QuestionsApp
                 return true;
         
         }
+
+        public String getResponses(String username, int quizID){
+            String responses = "";
+            String sql =
+                "SELECT trim(questionText),trim(answerText) " +
+                "FROM response r " +
+                "INNER JOIN question q ON q.questionID = r.questionID " +
+                "INNER JOIN answer a ON a.answerID = r.answerID " +
+                "WHERE r.username = @username AND r.quizID = @quizID ";
+
+            //"SELECT questionText,answerText FROM response r INNER JOIN question q ON q.questionID = r.questionID INNER JOIN answer a ON a.answerID = r.answerID WHERE r.username = @username AND quizID = @quizID";
+            SqlCommand responseCommand = new SqlCommand(sql, con);
+            responseCommand.Parameters.AddWithValue("@username", username);
+            responseCommand.Parameters.AddWithValue("@quizID", quizID);
+            try
+            {
+                con.Open();
+                SqlDataReader reader = responseCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    responses = responses + "Q: " + reader.GetString(0) + "\r\n" +
+                        "A: " + reader.GetString(1) + "\r\n";
+                }
+            }
+            catch (Exception err)
+            {
+                Console.Error.WriteLine(err);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return responses;
+            
+        }
+
     }
 }

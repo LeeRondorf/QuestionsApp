@@ -59,6 +59,7 @@ namespace QuestionsApp
             if (connection.login(txtUsername.Text, txtPassword.Text).Equals(true))
             {
                 MessageBox.Show("Login Successful.");
+                this.Close();
             }
             else
             {

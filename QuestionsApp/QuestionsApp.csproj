@@ -71,11 +71,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuestionAppDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="QuestionAppDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuestionAppDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuizReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuizReport.Designer.cs">
+      <DependentUpon>QuizReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Register.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Response.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Response.Designer.cs">
+      <DependentUpon>Response.cs</DependentUpon>
     </Compile>
     <Compile Include="RunSqlCommands.cs" />
     <Compile Include="TakeQuiz.cs">
@@ -102,8 +119,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="QuizReport.resx">
+      <DependentUpon>QuizReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Response.resx">
+      <DependentUpon>Response.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TakeQuiz.resx">
       <DependentUpon>TakeQuiz.cs</DependentUpon>
@@ -127,6 +150,17 @@
     </None>
     <None Include="QuestionAppDataSet.xss">
       <DependentUpon>QuestionAppDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionAppDataSet1.xsc">
+      <DependentUpon>QuestionAppDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionAppDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuestionAppDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuestionAppDataSet1.xss">
+      <DependentUpon>QuestionAppDataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
