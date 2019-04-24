@@ -71,6 +71,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuestionAppDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="QuestionAppDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuestionAppDataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Register.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +83,12 @@
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
     <Compile Include="RunSqlCommands.cs" />
+    <Compile Include="SelectQuiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectQuiz.Designer.cs">
+      <DependentUpon>SelectQuiz.cs</DependentUpon>
+    </Compile>
     <Compile Include="TakeQuiz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +116,9 @@
     <EmbeddedResource Include="Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectQuiz.resx">
+      <DependentUpon>SelectQuiz.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TakeQuiz.resx">
       <DependentUpon>TakeQuiz.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +141,17 @@
     </None>
     <None Include="QuestionAppDataSet.xss">
       <DependentUpon>QuestionAppDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionAppDataSet2.xsc">
+      <DependentUpon>QuestionAppDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionAppDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuestionAppDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuestionAppDataSet2.xss">
+      <DependentUpon>QuestionAppDataSet2.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
