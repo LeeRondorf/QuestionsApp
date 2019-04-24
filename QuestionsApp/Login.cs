@@ -14,6 +14,8 @@ namespace QuestionsApp
 {
     public partial class Login : Form
     {
+        public string username { get; set; }
+
         public Login()
         {
             InitializeComponent();
@@ -26,40 +28,15 @@ namespace QuestionsApp
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           /* 
-           try
-            {
-                con.Open();
-                var reader = scUserCheck.ExecuteReader();
-                if (reader.Read())
-                {
-                    //if general user, open the quiz selection page (something)
-
-                    MessageBox.Show("Success");
-                    //if admin, open quiz management page
-
-
-                }
-                else
-                {
-                    MessageBox.Show("Invalid username or password.");
-                }
-
-            }
-            catch (Exception err)
-            {
-                Console.Error.WriteLine(err);
-            }
-            finally
-            {
-                con.Close();
-            }
-            */
             RunSqlCommands connection = new RunSqlCommands();
             if (connection.login(txtUsername.Text, txtPassword.Text).Equals(true))
             {
                 MessageBox.Show("Login Successful.");
-                this.Close();
+                username = txtUsername.Text;
+                DialogResult = DialogResult.OK;
+                Close();
+
+
             }
             else
             {

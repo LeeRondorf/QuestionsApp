@@ -11,7 +11,9 @@ namespace QuestionsApp
     class RunSqlCommands
     {
         //make sure to change the data source to your computer
-        static string connectionString = @"Data Source=UMC-1040-1147\SQLEXPRESS01;Initial Catalog=QuestionApp;Integrated Security=True";
+        //christopher: 1351
+        //lee: 1147
+        static string connectionString = @"Data Source=UMC-1040-1351\SQLEXPRESS;Initial Catalog=QuestionApp;Integrated Security=True";
         SqlConnection con = new SqlConnection(connectionString);
 
         private bool runCommand(SqlCommand command)
@@ -56,6 +58,26 @@ namespace QuestionsApp
             SqlDataReader reader = command.ExecuteReader();
             con.Close();
             return true;
+        }
+
+        public List<Quiz> returnQuizList()
+        {
+            string sql = "SELECT * FROM quiz";
+            SqlCommand command = new SqlCommand(sql, con);
+            con.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            List<Quiz> quizList = new List<Quiz>();
+
+            while (reader.Read())
+            {
+                Quiz quiz = new Quiz();
+                quiz.quizTitle = reader["quizName"].ToString();
+                quiz.id = Convert.ToInt32(reader["quizID"].ToString());
+                quizList.Add(quiz);
+            }
+
+            return quizList;
         }
 
         private bool checkIfExists(string table, string paramToCheck, string text)
@@ -169,43 +191,5 @@ namespace QuestionsApp
                 return true;
         
         }
-
-        public String getResponses(String username, int quizID){
-            String responses = "";
-            String sql =
-                "SELECT trim(questionText),trim(answerText) " +
-                "FROM response r " +
-                "INNER JOIN question q ON q.questionID = r.questionID " +
-                "INNER JOIN answer a ON a.answerID = r.answerID " +
-                "WHERE r.username = @username AND r.quizID = @quizID ";
-
-            //"SELECT questionText,answerText FROM response r INNER JOIN question q ON q.questionID = r.questionID INNER JOIN answer a ON a.answerID = r.answerID WHERE r.username = @username AND quizID = @quizID";
-            SqlCommand responseCommand = new SqlCommand(sql, con);
-            responseCommand.Parameters.AddWithValue("@username", username);
-            responseCommand.Parameters.AddWithValue("@quizID", quizID);
-            try
-            {
-                con.Open();
-                SqlDataReader reader = responseCommand.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    responses = responses + "Q: " + reader.GetString(0) + "\r\n" +
-                        "A: " + reader.GetString(1) + "\r\n";
-                }
-            }
-            catch (Exception err)
-            {
-                Console.Error.WriteLine(err);
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            return responses;
-            
-        }
-
     }
 }

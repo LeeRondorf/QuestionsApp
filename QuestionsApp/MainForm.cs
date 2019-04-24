@@ -12,6 +12,8 @@ namespace QuestionsApp
 {
     public partial class MainForm : Form
     {
+        public string account { get; set; }
+
         public MainForm()
         {
             InitializeComponent();
@@ -30,15 +32,25 @@ namespace QuestionsApp
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            login.MdiParent = this;
-            login.Show();
+
+            var result = login.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                account = login.username;
+                loggedInButtonChanges();
+            }
         }
 
         private void registerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Register register = new Register();
-            register.MdiParent = this;
-            register.Show();
+
+            var result = register.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                account = register.name;
+                loggedInButtonChanges();
+            }
         }
 
         private void quizToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -48,11 +60,18 @@ namespace QuestionsApp
             createQuiz.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void quizToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Response response = new Response();
-            response.MdiParent = this;
-            response.Show();
+            SelectQuiz selectQuiz = new SelectQuiz(account);
+            selectQuiz.MdiParent = this;
+            selectQuiz.Show();
+        }
+
+        private void loggedInButtonChanges()
+        {
+            quizToolStripMenuItem1.Enabled = true;
+            loginToolStripMenuItem.Enabled = false;
+            registerToolStripMenuItem.Enabled = false;
         }
     }
 }
