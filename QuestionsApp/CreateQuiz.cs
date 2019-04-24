@@ -150,13 +150,14 @@ namespace QuestionsApp
         }
     }
 
-    class Quiz
+    public class Quiz
     {
         public string quizTitle { get; set; }
         public List<Question> questions = new List<Question>();
+        public int id { get; set; }
     }
 
-    class Question
+    public class Question
     {
         private string questionName;
         public string QuestionName
@@ -173,11 +174,13 @@ namespace QuestionsApp
         
         public string questionText { get; set; }
         public List<Answer> answers = new List<Answer>();
+        public int id { get; set; }
     }
 
-    class Answer
+    public class Answer
     {
         public string answerText { get; set; }
         public bool correct { get; set; }
+        public int id { get; set; }
     }
 }

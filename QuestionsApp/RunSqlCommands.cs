@@ -11,7 +11,9 @@ namespace QuestionsApp
     class RunSqlCommands
     {
         //make sure to change the data source to your computer
-        static string connectionString = @"Data Source=UMC-1040-1147\SQLEXPRESS01;Initial Catalog=QuestionApp;Integrated Security=True";
+        //christopher: 1351
+        //lee: 1147
+        static string connectionString = @"Data Source=UMC-1040-1351\SQLEXPRESS;Initial Catalog=QuestionApp;Integrated Security=True";
         SqlConnection con = new SqlConnection(connectionString);
 
         private bool runCommand(SqlCommand command)
@@ -48,6 +50,34 @@ namespace QuestionsApp
             {
                 con.Close();
             }
+        }
+
+        private bool runCommandInsert(SqlCommand command)
+        {
+            con.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            con.Close();
+            return true;
+        }
+
+        public List<Quiz> returnQuizList()
+        {
+            string sql = "SELECT * FROM quiz";
+            SqlCommand command = new SqlCommand(sql, con);
+            con.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            List<Quiz> quizList = new List<Quiz>();
+
+            while (reader.Read())
+            {
+                Quiz quiz = new Quiz();
+                quiz.quizTitle = reader["quizName"].ToString();
+                quiz.id = Convert.ToInt32(reader["quizID"].ToString());
+                quizList.Add(quiz);
+            }
+
+            return quizList;
         }
 
         private bool checkIfExists(string table, string paramToCheck, string text)

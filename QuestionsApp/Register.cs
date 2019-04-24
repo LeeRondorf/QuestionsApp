@@ -14,6 +14,8 @@ namespace QuestionsApp
 {
     public partial class Register : Form
     {
+        public string name { get; set; }
+
         public Register()
         {
             InitializeComponent();
@@ -38,6 +40,9 @@ namespace QuestionsApp
                 if (connection.register(username, password, firstName, middleName, lastName, address, city, state, postalCode))
                 {
                     MessageBox.Show("Registered Successfully");
+                    name = username;
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
             }
 
