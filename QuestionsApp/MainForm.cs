@@ -73,5 +73,19 @@ namespace QuestionsApp
             loginToolStripMenuItem.Enabled = false;
             registerToolStripMenuItem.Enabled = false;
         }
+
+        private void quizReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QuizReport quizReport = new QuizReport();
+            quizReport.MdiParent = this;
+            quizReport.Show();
+        }
+
+        private void quizToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            about about = new about();
+            about.MdiParent = this;
+            about.Show();
+        }
     }
 }

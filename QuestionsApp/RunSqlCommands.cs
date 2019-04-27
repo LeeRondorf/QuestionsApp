@@ -12,8 +12,8 @@ namespace QuestionsApp
     {
         //make sure to change the data source to your computer
         //christopher: 1351
-        //lee: 1147
-        static string connectionString = @"Data Source=UMC-1040-1351\SQLEXPRESS;Initial Catalog=QuestionApp;Integrated Security=True";
+        //lee: 1147\SQLEXPRESS01
+        static string connectionString = @"Data Source=UMC-1040-1147\SQLEXPRESS01;Initial Catalog=QuestionApp;Integrated Security=True";
         SqlConnection con = new SqlConnection(connectionString);
 
         private bool runCommand(SqlCommand command)
@@ -76,9 +76,109 @@ namespace QuestionsApp
                 quiz.id = Convert.ToInt32(reader["quizID"].ToString());
                 quizList.Add(quiz);
             }
-
+            con.Close();
             return quizList;
         }
+
+        public List<String> returnUserList()
+        {
+            List<String> users = new List<String>();
+            string sql = "SELECT username FROM users";
+            SqlCommand command = new SqlCommand(sql, con);
+            con.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                users.Add(reader["username"].ToString());
+            }
+            con.Close();
+            return users;
+        }
+
+        public List<int> returnQuizesTakenByUser(String username)
+        {
+            List<int> quizes = new List<int>();
+            string sql = "select distinct quizID from response where username = @username";
+            SqlCommand command = new SqlCommand(sql, con);
+            command.Parameters.AddWithValue("@username", username);
+            con.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                quizes.Add(Convert.ToInt32(reader["quizID"].ToString()));
+            }
+            con.Close();
+            return quizes;
+        }
+
+        public int totalQuestionsInQuiz(int quizID, string username)
+        {
+            int totalQuestions=0;
+            string sql = "select count(a.answerID) as \"total\" from users u " +
+                "left join response r on u.username = r.username " +
+                "left join answer a on r.answerID = a.answerID " +
+                "where u.username = @username and quizID = @quizID";
+            SqlCommand command = new SqlCommand(sql, con);
+            command.Parameters.AddWithValue("@username", username);
+            command.Parameters.AddWithValue("@quizID", quizID);
+            con.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                totalQuestions = Convert.ToInt32(reader["total"].ToString());
+            }
+            con.Close();
+            return totalQuestions;
+
+        }
+
+        public int totalCorrectInQuiz(int quizID, string username)
+        {
+            int correctQuestions = -1;
+            string sql = "select count(a.answerID) as \"correct\" from users u " +
+                "left join response r on u.username = r.username "+
+                "left join answer a on r.answerID = a.answerID " +
+                "where a.answerCorrect = 1 AND u.username = @username AND quizID = @quizID";
+            SqlCommand command = new SqlCommand(sql, con);
+            command.Parameters.AddWithValue("@username", username);
+            command.Parameters.AddWithValue("@quizID", quizID);
+            con.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                correctQuestions = Convert.ToInt32(reader["correct"].ToString());
+            }
+           
+            con.Close();
+            return correctQuestions;
+
+        }
+
+    /*    public int totalIncorrectInQuiz(int quizID, string username)
+        {
+            int incorrectQuestions = -1
+            string sql = "select count(a.answerID) as \"incorrect\" from users u " +
+                "left join response r on u.username = r.username " +
+                "left join answer a on r.answerID = a.answerID " +
+                "where a.answerCorrect = 0 AND u.username = @username AND quizID = @quizID";
+            SqlCommand command = new SqlCommand(sql, con);
+            command.Parameters.AddWithValue("@username", username);
+            command.Parameters.AddWithValue("@quizID", quizID);
+            con.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                incorrectQuestions = Convert.ToInt32(reader["total"].ToString());
+            }
+            
+            con.Close();
+            return incorrectQuestions;
+
+        }*/
 
         private bool checkIfExists(string table, string paramToCheck, string text)
         {

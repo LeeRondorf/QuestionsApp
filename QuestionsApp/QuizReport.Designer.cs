@@ -33,11 +33,11 @@
             this.lblQuizTakenLabel = new System.Windows.Forms.Label();
             this.lblQuizTaken = new System.Windows.Forms.Label();
             this.lblAvgScoreLabel = new System.Windows.Forms.Label();
-            this.lblAvgScore = new System.Windows.Forms.Label();
             this.lblHighScoreLabel = new System.Windows.Forms.Label();
             this.lblLowScoreLabel = new System.Windows.Forms.Label();
             this.lblHighScore = new System.Windows.Forms.Label();
             this.lblLowScore = new System.Windows.Forms.Label();
+            this.lblAvgScore = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblUser
@@ -57,6 +57,7 @@
             this.cmbUsers.Name = "cmbUsers";
             this.cmbUsers.Size = new System.Drawing.Size(121, 24);
             this.cmbUsers.TabIndex = 1;
+            this.cmbUsers.SelectedIndexChanged += new System.EventHandler(this.cmbUsers_SelectedIndexChanged);
             // 
             // lblQuizTakenLabel
             // 
@@ -72,9 +73,8 @@
             this.lblQuizTaken.AutoSize = true;
             this.lblQuizTaken.Location = new System.Drawing.Point(160, 91);
             this.lblQuizTaken.Name = "lblQuizTaken";
-            this.lblQuizTaken.Size = new System.Drawing.Size(46, 17);
+            this.lblQuizTaken.Size = new System.Drawing.Size(0, 17);
             this.lblQuizTaken.TabIndex = 3;
-            this.lblQuizTaken.Text = "label1";
             // 
             // lblAvgScoreLabel
             // 
@@ -84,15 +84,6 @@
             this.lblAvgScoreLabel.Size = new System.Drawing.Size(106, 17);
             this.lblAvgScoreLabel.TabIndex = 4;
             this.lblAvgScoreLabel.Text = "Average Score:";
-            // 
-            // lblAvgScore
-            // 
-            this.lblAvgScore.AutoSize = true;
-            this.lblAvgScore.Location = new System.Drawing.Point(160, 134);
-            this.lblAvgScore.Name = "lblAvgScore";
-            this.lblAvgScore.Size = new System.Drawing.Size(46, 17);
-            this.lblAvgScore.TabIndex = 5;
-            this.lblAvgScore.Text = "label1";
             // 
             // lblHighScoreLabel
             // 
@@ -117,18 +108,24 @@
             this.lblHighScore.AutoSize = true;
             this.lblHighScore.Location = new System.Drawing.Point(160, 177);
             this.lblHighScore.Name = "lblHighScore";
-            this.lblHighScore.Size = new System.Drawing.Size(46, 17);
+            this.lblHighScore.Size = new System.Drawing.Size(0, 17);
             this.lblHighScore.TabIndex = 8;
-            this.lblHighScore.Text = "label1";
             // 
             // lblLowScore
             // 
             this.lblLowScore.AutoSize = true;
             this.lblLowScore.Location = new System.Drawing.Point(160, 220);
             this.lblLowScore.Name = "lblLowScore";
-            this.lblLowScore.Size = new System.Drawing.Size(46, 17);
+            this.lblLowScore.Size = new System.Drawing.Size(0, 17);
             this.lblLowScore.TabIndex = 9;
-            this.lblLowScore.Text = "label1";
+            // 
+            // lblAvgScore
+            // 
+            this.lblAvgScore.AutoSize = true;
+            this.lblAvgScore.Location = new System.Drawing.Point(160, 134);
+            this.lblAvgScore.Name = "lblAvgScore";
+            this.lblAvgScore.Size = new System.Drawing.Size(0, 17);
+            this.lblAvgScore.TabIndex = 5;
             // 
             // QuizReport
             // 
@@ -147,6 +144,7 @@
             this.Controls.Add(this.lblUser);
             this.Name = "QuizReport";
             this.Text = "QuizReport";
+            this.Load += new System.EventHandler(this.QuizReport_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,10 +157,10 @@
         private System.Windows.Forms.Label lblQuizTakenLabel;
         private System.Windows.Forms.Label lblQuizTaken;
         private System.Windows.Forms.Label lblAvgScoreLabel;
-        private System.Windows.Forms.Label lblAvgScore;
         private System.Windows.Forms.Label lblHighScoreLabel;
         private System.Windows.Forms.Label lblLowScoreLabel;
         private System.Windows.Forms.Label lblHighScore;
         private System.Windows.Forms.Label lblLowScore;
+        private System.Windows.Forms.Label lblAvgScore;
     }
 }

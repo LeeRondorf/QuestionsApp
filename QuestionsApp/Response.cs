@@ -26,8 +26,8 @@ namespace QuestionsApp
 
         private void showResponse()
         {
-            RunSqlCommands command = new RunSqlCommands();
-            txtQzResp.Text = command.getResponses("lee", 1016);
+            //RunSqlCommands command = new RunSqlCommands();
+            //txtQzResp.Text = command.getResponses("lee", 1016);
             //txtQzResp.Text = "Hello World";
         }
     }

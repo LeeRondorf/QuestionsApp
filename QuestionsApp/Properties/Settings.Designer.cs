@@ -26,7 +26,7 @@ namespace QuestionsApp.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=UMC-1040-1147\\SQLEXPRESS;Initial Catalog=QuestionApp;Integrated Secur" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=UMC-1040-1147\\SQLEXPRESS01;Initial Catalog=QuestionApp;Integrated Secur" +
             "ity=True")]
         public string QuestionAppConnectionString {
             get {
@@ -37,10 +37,31 @@ namespace QuestionsApp.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=UMC-1040-1351\\SQLEXPRESS;Initial Catalog=QuestionApp;Integrated Secur" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=UMC-1040-1147\\SQLEXPRESS01;Initial Catalog=QuestionApp;Integrated Secur" +
             "ity=True")]
         public string QuestionAppConnection {
             get {
+                return ((string)(this["QuestionAppConnection"]));
+            }
+        }
+
+        public string QuestionAppConnectionString1
+        {
+            get
+            {
+                return ((string)(this["QuestionAppConnectionString"]));
+            }
+        }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=UMC-1040-1147\\SQLEXPRESS01;Initial Catalog=QuestionApp;Integrated Secur" +
+            "ity=True")]
+        public string QuestionAppConnection1
+        {
+            get
+            {
                 return ((string)(this["QuestionAppConnection"]));
             }
         }
