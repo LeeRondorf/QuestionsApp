@@ -158,28 +158,6 @@ namespace QuestionsApp
 
         }
 
-    /*    public int totalIncorrectInQuiz(int quizID, string username)
-        {
-            int incorrectQuestions = -1
-            string sql = "select count(a.answerID) as \"incorrect\" from users u " +
-                "left join response r on u.username = r.username " +
-                "left join answer a on r.answerID = a.answerID " +
-                "where a.answerCorrect = 0 AND u.username = @username AND quizID = @quizID";
-            SqlCommand command = new SqlCommand(sql, con);
-            command.Parameters.AddWithValue("@username", username);
-            command.Parameters.AddWithValue("@quizID", quizID);
-            con.Open();
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                incorrectQuestions = Convert.ToInt32(reader["total"].ToString());
-            }
-            
-            con.Close();
-            return incorrectQuestions;
-
-        }*/
-
         private bool checkIfExists(string table, string paramToCheck, string text)
         {
             string sql = "SELECT @paramToCheck FROM @table where @paramToCheck = @text";

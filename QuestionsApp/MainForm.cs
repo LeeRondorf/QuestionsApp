@@ -72,6 +72,7 @@ namespace QuestionsApp
             quizToolStripMenuItem1.Enabled = true;
             loginToolStripMenuItem.Enabled = false;
             registerToolStripMenuItem.Enabled = false;
+            quizReportToolStripMenuItem.Enabled = true;
         }
 
         private void quizReportToolStripMenuItem_Click(object sender, EventArgs e)
